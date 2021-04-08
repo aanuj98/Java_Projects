@@ -1,0 +1,22 @@
+/*
+The following program checks is user entered string is a palindrome or not
+ */
+
+import java.util.Scanner;
+public class practice {
+    public static void main(String[] args){
+        String userInput, answer = "";
+
+        Scanner sc = new Scanner(System.in);
+
+        userInput = sc.nextLine();
+
+        int len = userInput.length();
+        for (int i = len -1; i >= 0; i --)
+            answer = answer + userInput.charAt(i);
+        if (userInput.equals(answer))
+            System.out.println(userInput + " is a palindrome.");
+        else
+            System.out.println(userInput + " is not a palindrome.");
+    }
+}
