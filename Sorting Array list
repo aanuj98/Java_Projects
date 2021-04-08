@@ -1,0 +1,50 @@
+/*
+The following program returns the Array list sorted by salary and if salary is same then by name
+*/
+
+
+import java.util.*;
+
+public class employer {
+    public static void main(String[] args){
+
+        List<Employee> employees = new ArrayList<>(Arrays.asList(new Employee("Ed Smith","Developer", 150000),
+                new Employee("Terry Doe","Developer", 150000),
+                new Employee("John Doe", "CEO", 200000),
+                new Employee("Mike Smith","CFO", 180000),
+                new Employee("Ellen Bailey", "Secretary", 50000)));
+
+        System.out.println("Before sorting: " + employees);
+
+        System.out.println("After sorting by highest salary and if salary is same then by name: ");
+        Collections.sort(employees);
+        System.out.println(employees);
+    }
+}
+
+class Employee implements Comparable<Employee>{
+    String name, id;
+    int salaray;
+
+    public Employee(String name, String id, int salaray){
+        this.name = name;
+        this.id = id;
+        this.salaray = salaray;
+    }
+
+
+
+    public String getName(){return name;}
+    public String getId() {return id;}
+    public int getSalaray(){return salaray;}
+
+    public String toString(){
+        return name + " " + id + " " + salaray;
+    }
+
+    public int compareTo(Employee temp){
+       // for ascending order
+        // return this.salaray - temp.getSalaray();
+        return temp.getSalaray() - this.salaray;
+    }
+}
