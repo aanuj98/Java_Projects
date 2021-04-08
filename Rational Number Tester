@@ -1,0 +1,90 @@
+/*
+The program checks for rational numbers in a file
+*/
+
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+public class RationalNumberTester {
+
+    private static final int capacity = 16;
+    private static int size = 0;
+
+    private static double[] elements = new double[capacity];
+
+    public static int list_size() {
+        return size;
+    }
+
+    public static boolean add_list(double item) {
+        if (elements.length == list_size()) {
+            double []old_list = elements;
+            elements = new double[elements.length * 2 + 1];
+            for (int i=0; i<size; i++) {
+                elements[i] = old_list[i];
+            }
+
+        }
+        elements[size++] = item;
+        return true;
+    }
+    public static void duplicate_remove(){
+        double [] temp = new double[size];
+        int x = 0;
+        double var;
+
+        for (int i=0; i<size; i++) {
+            for (int j=0; j<size-i-1; j++) {
+                if (elements[j]>elements[j+1]) {
+                    var = elements[j];
+                    elements[j] = elements[j+1];
+                    elements[j+1] = var;
+                }
+            }
+        }
+
+        for (int i=0; i<size-1; i++) {
+            if(elements[i]!=elements[i+1]) {
+                temp[x++] = elements[i];
+            }
+        }
+        temp[x++] = elements[size-1];
+        for(int i=0; i<size-1; i++) {
+            elements[i] = temp[i];
+        }
+
+        size = x;
+    }
+
+    public static double sum()
+    {
+        double add = 0;
+        for (int i=0; i<size; i++) {
+            add = add + elements[i];
+        }
+        return add;
+    }
+
+    private static Scanner x;
+
+    public static void main(String[] args) throws FileNotFoundException{
+
+
+        try {
+            x = new Scanner(new File("C:\\Users\\Aanuj Sharma\\Documents\\UDC\\Data Structures\\filename.txt"));
+        }
+        catch (Exception e) {
+            System.out.println("Could not find file");
+        }
+
+        while(x.hasNextLine()) {
+            double item = Double.parseDouble(x.nextLine());
+            System.out.println(item);
+            add_list(item);
+        }
+
+        duplicate_remove();
+        System.out.println("The sum of numbers after removing duplicates is: " + sum());
+    }
+}
