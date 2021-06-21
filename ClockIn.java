@@ -28,7 +28,6 @@ public class ClockIn {
     static ArrayList<String> trackTime = new ArrayList<>();
     
 
-
     // Method to Read the file
     public static void readFile(){
         Scanner objs = new Scanner(System.in);
