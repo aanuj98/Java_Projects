@@ -1,5 +1,5 @@
 /*
-The following program checks is user entered string is a palindrome or not
+The following program checks if user entered string is a palindrome or not
  */
 
 import java.util.Scanner;
